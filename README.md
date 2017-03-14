@@ -1,5 +1,5 @@
 #   OpenGLExperiments
-My experiments with OpenGL and my basic starter files for working with graphics. Done in C with OpenGL, GLM for math and matrices, GLEW for extension handling, and GLFW for handling windows/ user inputs.
+My experiments with OpenGL and my basic starter files for working with graphics. Done in C/C++ with OpenGL, GLM for math and matrices, GLEW for extension handling, and GLFW for handling windows/ user inputs. There are executables in the Debug folder (the shaders folder must be in same directory).
 
 #   Project Descriptions:
 # BasicWindow
