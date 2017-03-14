@@ -20,7 +20,7 @@ void window_size_callback(GLFWwindow* window, int width, int height) {
 	windowW = width;
 }
 
-
+//cube: six sides -> 12 triangles to create
 static const GLfloat cube_vertex_buffer_data[] = {
 	-1.0f,-1.0f,-1.0f,
 	-1.0f,-1.0f, 1.0f,
@@ -100,14 +100,14 @@ static const GLfloat cube_color_buffer_data[] = {
 	0.0f,	0.0f,	1.0f
 };
 
-//draws the triangle in the vertex buffer along with the color buffer using shader
+//draws the triangles in the vertex buffer with the color in the buffer, uses shaders
 void drawTriangles(GLuint* vertexbuffer, GLuint* colorbuffer, int numTriangles) {
-	// 1rst attribute buffer : vertices
+	//attribute buffer 1 for vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, *vertexbuffer);
 	glVertexAttribPointer(0, 3,	GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-	// 2nd attribute buffer : colors
+	//attribute buffer 2 for colors
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, *colorbuffer);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
@@ -159,11 +159,6 @@ int main() {
 		return -1;
 	}
 
-
-	//window settings
-	//glfwSetWindowSizeLimits(window, 200, 200, 400, 400);
-	//glfwSetWindowAspectRatio(window, 16, 9);
-
 	//background
 	glClearColor(0.0f, 0.0f, 0.2f, 0.0f);
 	// Enable depth test
@@ -202,7 +197,7 @@ int main() {
 	//View matrix at (4, 3, 3), looking at origin
 	glm::mat4 viewMat = glm::lookAt(glm::vec3(4, 3, -3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
-	while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
+	while (!glfwWindowShouldClose(window)) {
 		//clear screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
