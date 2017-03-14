@@ -1,0 +1,13 @@
+﻿Build started 3/13/2017 2:38:43 AM.
+     1>Project "C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\bin\ZERO_CHECK.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Checking Build System
+         CMake does not need to re-run because C:/Users/Cole/Documents/PersonalProjects/OpenGLPractice/OpenGLPractice/include/glfw-3.2.1/bin/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Cole/Documents/PersonalProjects/OpenGLPractice/OpenGLPractice/include/glfw-3.2.1/bin/src/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Cole/Documents/PersonalProjects/OpenGLPractice/OpenGLPractice/include/glfw-3.2.1/bin/examples/CMakeFiles/generate.stamp is up-to-date.
+         CMake does not need to re-run because C:/Users/Cole/Documents/PersonalProjects/OpenGLPractice/OpenGLPractice/include/glfw-3.2.1/bin/tests/CMakeFiles/generate.stamp is up-to-date.
+     1>Done Building Project "C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\bin\ZERO_CHECK.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.15

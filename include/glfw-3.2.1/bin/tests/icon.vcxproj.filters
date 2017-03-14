@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\tests\icon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\deps\glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\deps\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Cole\Documents\PersonalProjects\OpenGLPractice\OpenGLPractice\include\glfw-3.2.1\tests\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A29E8577-51F2-3483-BDEE-B252933E8451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3E3FE96B-2095-3C84-B722-5BC0E7A15AB4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
