@@ -1,4 +1,4 @@
-﻿Build started 3/14/2017 7:11:45 AM.
+﻿Build started 3/14/2017 7:44:14 AM.
      1>Project "C:\Users\Cole\Documents\PersonalProjects\OpenGLExperiments\BasicWindow\BasicWindow.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Users\Cole\Documents\PersonalProjects\OpenGLExperiments\include\glew-2.0.0\include\GL" /I"C:\Users\Cole\Documents\PersonalProjects\OpenGLExperiments\include\glfw-3.2.1\include" /IC:\Users\Cole\Documents\PersonalProjects\OpenGLExperiments\include\glm\glm /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D GLEW_STATIC /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
@@ -12,4 +12,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.54
+Time Elapsed 00:00:00.95
