@@ -8,4 +8,4 @@ This project is my simple starter file for opening glfw windows and importing al
 This project builds off of BasicWindow and adds in support for shaders. shaders.cpp reads input for GLSL code from files. A cube is generated from a buffer of vectors, and is set inside a VAO with a corresponding color buffer. A simple Model View Projection matrix is set up to show the cube from an outside perspective. My simple vertex shader applies the MVP matrix to each vertex, and my fragment shader assigns the color from the VBO buffer. drawTriangles function draws the triangles from the vertexes in the buffers.
 # BasicUserMovement
 This project adds user control to Basic3DModel. It adjusts the ModelViewProjection matrix every loop in response to user controls. Allows the user to float and move arount the cube.
-Controls: W-fwd A-left S-back D-right SPACE-up LSHIFT-down
+Controls: ESC-exit W-fwd A-left S-back D-right SPACE-up LSHIFT-down
