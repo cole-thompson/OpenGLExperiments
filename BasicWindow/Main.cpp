@@ -36,8 +36,8 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);	//no old OpenGL
 	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);	//reszeable window
 
-												//create GLFWwindow and OpenGL context
-												//for full screen, make the monitor parameter glfwGetPrimaryMonitor()
+	//create GLFWwindow and OpenGL context
+	//for full screen, make the monitor parameter glfwGetPrimaryMonitor()
 	window = glfwCreateWindow(1024, 768, "OpenGL Practice", NULL, NULL);
 	if (window == NULL) {
 		fprintf(stderr, "GLFWwindow not opening");
