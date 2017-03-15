@@ -43,11 +43,10 @@ void drawTriangles(GLuint* vertexbuffer, GLuint* uvbuffer, int numVertices) {
 	glDrawArrays(GL_TRIANGLES, 0, numVertices);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-
 }
 
 glm::mat4 getModelMatrix() {
-	//translation*rotation*scale matrices for model (cube)
+	//translation*rotation*scale matrices for model
 	return glm::mat4(1.0);
 }
 
@@ -123,7 +122,7 @@ int main() {
 	glBindVertexArray(vertexArray);
 
 	//create shaders from files with shaders.cpp
-	GLuint shaderProgram = LoadShaders("recources/shaders/mvpVertexShaderUV.vert", "recources/shaders/textureFragmentShader.frag");
+	GLuint shaderProgram = loadShaders("recources/shaders/mvpVertexShaderUV.vert", "recources/shaders/textureFragmentShader.frag");
 
 	// MVP uniform variable. these are used to communicate with shader. MVP in vertexShader
 	GLuint MVPMatrixID = glGetUniformLocation(shaderProgram, "MVP");

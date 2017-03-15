@@ -32,7 +32,7 @@ std::string fileToString(const char *file) {
 /*
  * LoadShaders takes the filepaths of a vertex shader and fragment shader, and returns a GLuint program with linked shaders
  */
-GLuint LoadShaders(const char* vertexShaderFile, const char* fragmentShaderFile) {
+GLuint loadShaders(const char* vertexShaderFile, const char* fragmentShaderFile) {
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 

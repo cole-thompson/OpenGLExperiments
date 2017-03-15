@@ -12,7 +12,7 @@
 #define FOURCC_DXT3 0x33545844
 #define FOURCC_DXT5 0x35545844
 
-GLuint loadDDSTexture(const char * imagepath) {
+GLuint loadDDSTexture(const char* imagepath) {
 	char header[124];
 	FILE *ddsFile = fopen(imagepath, "rb");
 	if (ddsFile == NULL) {
