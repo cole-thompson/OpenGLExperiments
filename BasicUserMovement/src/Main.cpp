@@ -143,7 +143,7 @@ int main() {
 	//for full screen, make the monitor parameter glfwGetPrimaryMonitor()
 	windowW = 1024;
 	windowH = 768;
-	window = glfwCreateWindow(windowW, windowH, "OpenGL Practice", NULL, NULL);
+	window = glfwCreateWindow(windowW, windowH, "Cube with User Movement", NULL, NULL);
 	if (window == NULL) {
 		fprintf(stderr, "GLFWwindow not opening");
 		glfwTerminate();
@@ -192,7 +192,7 @@ int main() {
 	glBindVertexArray(vertexArray);
 
 	//create shaders from files with shaders.cpp
-	GLuint shaderProgram = LoadShaders("shaders/mvpVertexShader.vert", "shaders/simpleFragmentShader.frag");
+	GLuint shaderProgram = LoadShaders("recources/shaders/mvpVertexShaderColor.vert", "recources/shaders/simpleFragmentShader.frag");
 
 	// MVP uniform variable. used to communicate with shader. MVP in vertexShader
 	GLuint MVPMatrixID = glGetUniformLocation(shaderProgram, "MVP");

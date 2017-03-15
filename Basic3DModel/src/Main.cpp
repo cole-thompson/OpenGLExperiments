@@ -175,7 +175,7 @@ int main() {
 	glBindVertexArray(vertexArray);
 
 	//create shaders from files with shaders.cpp
-	GLuint shaderProgram = LoadShaders("shaders/mvpVertexShader.vert", "shaders/simpleFragmentShader.frag");
+	GLuint shaderProgram = LoadShaders("recources/shaders/mvpVertexShaderColor.vert", "recources/shaders/simpleFragmentShader.frag");
 
 	// MVP uniform variable. these are used to communicate with shader. MVP in vertexShader
 	GLuint MVPMatrixID = glGetUniformLocation(shaderProgram, "MVP");

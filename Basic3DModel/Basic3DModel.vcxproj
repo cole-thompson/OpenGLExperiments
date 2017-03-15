@@ -25,10 +25,6 @@
   <ItemGroup>
     <ClInclude Include="src\shaders.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="src\shaders\fragmentShader.frag" />
-    <None Include="src\shaders\vertexShader.vert" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C82FA39-47E4-48BD-9A43-7240AE02941C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
