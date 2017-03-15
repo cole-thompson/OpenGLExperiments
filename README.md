@@ -1,6 +1,6 @@
 # OpenGLExperiments
 Cole Thompson<br />
-My experiments with OpenGL and my basic starter files for working with graphics. Done in C/C++ and GLSL shader language with OpenGL, GLM for math and matrices, GLEW for extension handling, and GLFW for handling windows and user inputs. There are executables in the Working Projects folder (the recources folder must be in same directory as the .exe). This is a compilation of things I have taught myself from research on the libraries' documentation, tutorials, and articles. The project's goal is to approach graphics from a low-level perpective and understand the math and 
+My experiments with OpenGL and my basic starter files for working with graphics. Done in C/C++ and GLSL shader language with OpenGL, GLM for math and matrices, GLEW for extension handling, and GLFW for handling windows and user inputs. There are executables in the Working Projects folder (the recources folder must be in same directory as the .exe). This is a compilation of things I have taught myself from research on the libraries' documentation, tutorials, and articles. The project's goal is to approach graphics from a math oriented, low-level technology perpective.
 
 ## Project Descriptions:
 ###   BasicWindow
