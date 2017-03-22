@@ -4,6 +4,7 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include "Sprite3d.hpp"
+#include "Shape2d.hpp"
 
 glm::mat4 viewMatrix = glm::mat4(1.0);
 glm::mat4 projectionMatrix = glm::mat4(1.0);
@@ -19,6 +20,8 @@ float mouseSpeed = 0.005f;
 float FoV = 45.0f;
 float aspectRatio = 4.0f / 3.0f;
 
+double lastPauseTime = 0;
+double buttonRepeatSpeed = 0.2; //seconds
 
 
 glm::mat4 getVMatrix() {
@@ -40,6 +43,31 @@ float absValue(float x) {
 bool isWithinBounds(glm::vec3 tempPosition) {
 	return (absValue(tempPosition[0]) < WORLDSIZE) && (absValue(tempPosition[1]) < WORLDSIZE) && (absValue(tempPosition[2]) < WORLDSIZE);
 }
+
+void pause(GLFWwindow* window) {
+	lastPauseTime = glfwGetTime();
+	double currentTime = glfwGetTime();
+	Shape2d* resume = new Shape2d(window, "recources/textures/resume.DDS", 0.0, 0.0, 0.5, 0.5);
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+	while (!glfwWindowShouldClose(window) && (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) && !(*resume).isClicked() &&
+		!(glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS  && currentTime - lastPauseTime > buttonRepeatSpeed)) {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		(*resume).drawSpriteTriangles();
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+		currentTime = glfwGetTime();
+	}
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	int windowW, windowH;
+	glfwGetWindowSize(window, &windowW, &windowH);
+	glfwSetCursorPos(window, windowW / 2, windowH / 2);
+	lastPauseTime = glfwGetTime();
+}
+
 
 void computeMVPMatrices(GLFWwindow* window, Sprite3d & controlledSprite) {
 	static double lastTimeStep = glfwGetTime();
@@ -73,6 +101,10 @@ void computeMVPMatrices(GLFWwindow* window, Sprite3d & controlledSprite) {
 	//Up vector
 	glm::vec3 upVector = glm::cross(rightVector, directionDiffVector);
 	
+	//pause
+	if ((glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS) && glfwGetTime() - lastPauseTime > buttonRepeatSpeed) {
+		pause(window);
+	}
 
 	glm::vec3 tempPosition = userPosition;
 	//Forward

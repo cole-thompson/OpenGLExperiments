@@ -13,7 +13,8 @@
 #include "textureInput.hpp"
 #include "shapeBuffers.hpp"
 #include "objInput.hpp"
-#include "sprite3D.hpp"
+#include "Sprite3D.hpp"
+#include "Shape2d.hpp"
 
 
 //global variables
@@ -26,6 +27,10 @@ int windowH;
 void window_size_callback(GLFWwindow* window, int width, int height) {
 	windowH = height;
 	windowW = width;
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
 }
 
 int initializeWindow() {
@@ -74,6 +79,8 @@ int initializeWindow() {
 
 	//set up callbacks for window
 	glfwSetWindowSizeCallback(window, window_size_callback);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
 
 	//if decorated window, there is a frame around the window
 	int frame_left_size, frame_top_size, framme_right_size, frame_bottom_size;
@@ -88,6 +95,14 @@ int initializeWindow() {
 	return 1;
 }
 
+void cleanup() {
+	glDeleteProgram(*(Sprite3d::getShader()));
+	glDeleteProgram(*(Shape2d::getShader()));
+	//close window, end program
+	glfwDestroyWindow(window);
+	glfwTerminate();
+}
+
 //MAIN
 int main() {
 	if (initializeWindow() == -1) {
@@ -100,43 +115,37 @@ int main() {
 	//No triangles who's normals don't face the camera
 	//glEnable(GL_CULL_FACE);
 
-	//global shader program in shaders.cpp, allows program to be accessed from Sprites
-	initCommonShaderProgram();
-
-	// MVP uniform variable. these are used to communicate with shader. MVP in vertexShader
-	GLuint mvpMatrixUniform = glGetUniformLocation(getCommonShaderProgram(), "MVP");
-
 	//generate sprites
 	const char* monkeyFilePath = "recources/objects/monkey.obj";
-	const char* textureFilePath = "recources/textures/checkers.DDS";
+	const char* textureFilePath = "recources/textures/rainbow.DDS";
 	
+	//initialize shaders
+	Sprite3d::initShader();
+	Shape2d::initShader();
+
 	//this Sprite will be controllable with arrow keys
-	Sprite3d* monkeySprite = (Sprite3d*)(new Sprite3d(monkeyFilePath, textureFilePath));
+	Sprite3d* monkeySprite = (Sprite3d*)(new Sprite3d(window, monkeyFilePath, textureFilePath));
 
 	//generate world box
 	const char* cubeFilePath = "recources/objects/cube.obj";
-	const char* cubeTextureFP = "recources/textures/cubeWorldDXT5.DDS";
-	Sprite3d* boundsSprite = (Sprite3d*)(new Sprite3d(cubeFilePath, cubeTextureFP));
+	const char* cubeTextureFP = "recources/textures/hubbleDXT5.DDS";
+	Sprite3d* boundsSprite = (Sprite3d*)(new Sprite3d(window, cubeFilePath, cubeTextureFP));
 	(*boundsSprite).modelMatrix = glm::scale(glm::mat4(1.0), glm::vec3(WORLDSIZE));
 
-	std::vector<Sprite3d*> sprites = {boundsSprite, monkeySprite, (Sprite3d*)(new Sprite3d(cubeFilePath, textureFilePath))};
+	std::vector<Sprite3d*> sprites = {boundsSprite, monkeySprite, (Sprite3d*)(new Sprite3d(window, cubeFilePath, textureFilePath))};
 	(*sprites[2]).modelMatrix = glm::scale(glm::mat4(1.0), glm::vec3(0.5));
 
 	//main loop
 	while (!glfwWindowShouldClose(window) && glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS) {
 		//clear screen
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		//use shader
-		glUseProgram(getCommonShaderProgram());
+		
+		glUseProgram(*(Sprite3d::getShader()));
 
 		//monkeySprite is the sprite controlled by the user
 		computeMVPMatrices(window, *monkeySprite);	
 
 		for (size_t i = 0; i < sprites.size(); i++) {
-			glm::mat4 modelMatrix = (*sprites[i]).modelMatrix;
-			glm::mat4 MVP = getPMatrix() * getVMatrix() * modelMatrix;
-			glUniformMatrix4fv(mvpMatrixUniform, 1, GL_FALSE, &MVP[0][0]);	//link MVP matrix to uniform variable for shader
 			(*sprites[i]).drawSpriteTriangles();
 		}
 
@@ -148,8 +157,6 @@ int main() {
 	}
 
 	//close window, end program
-	glDeleteProgram(getCommonShaderProgram());
-	glfwDestroyWindow(window);
-	glfwTerminate();
+	cleanup();
 	return 0;
 }

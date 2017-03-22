@@ -12,26 +12,6 @@
 #include "shaders.hpp"
 
 
-bool commonInitialized = false;
-GLuint commonShaderProgram;
-const char* mvpVertexShader = "recources/shaders/mvpVertexShader.vert";
-const char* textureFragmentShader = "recources/shaders/textureFragmentShader.frag";
-
-//global shader program variable
-void initCommonShaderProgram() {
-	commonShaderProgram = loadShaders(mvpVertexShader, textureFragmentShader);
-	commonInitialized = true;
-}
-
-GLuint getCommonShaderProgram() {
-	if (commonInitialized) {
-		return commonShaderProgram;
-	}
-	else {
-		return 0;
-	}
-}
-
 /*
  * Simple function that takes a shader file path and returns a String representation of that file
  */

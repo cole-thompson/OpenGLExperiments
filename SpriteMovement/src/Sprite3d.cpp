@@ -10,6 +10,7 @@
 #include "textureInput.hpp"
 #include "objInput.hpp"
 #include "sprite3D.hpp"
+#include "userControls.hpp"
 
 /*
 * This is my implementation of a simple Sprite that is loaded from a obj file
@@ -17,12 +18,38 @@
 * Model matrix for each step, which allows for transformations
 */
 
-Sprite3d::Sprite3d(const char* objFP, const char* ddsFilePath) {
+const char* Sprite3d::vertexShader;
+const char* Sprite3d::fragmentShader;
+GLuint Sprite3d::shader;
+
+// MVP uniform variable for Sprite3d. these are used to communicate with shader. MVP in mvpVertexShader
+GLuint Sprite3d::mvpMatrixUniform;
+//mySampler2D uniform variable 
+GLuint Sprite3d::textureUniform;
+
+void Sprite3d::initShader() {
+	vertexShader = "recources/shaders/sprite3dVertexShader.vert";
+	fragmentShader = "recources/shaders/textureFragmentShader.frag";
+	shader = loadShaders(vertexShader, fragmentShader);
+
+	// MVP uniform variable for Sprite3d. these are used to communicate with shader. MVP in mvpVertexShader
+	mvpMatrixUniform = glGetUniformLocation(shader, "MVP");
+	//mySampler2D uniform variable 
+	textureUniform = glGetUniformLocation(shader, "mySampler2D");
+}
+
+GLuint* Sprite3d::getShader() {
+	return &shader;
+}
+
+Sprite3d::Sprite3d(GLFWwindow* glfwWindow, const char* objFP, const char* ddsFilePath) {
+	window = glfwWindow;
+	glfwMakeContextCurrent(window);
+
+	glUseProgram(shader);
 	//create textures from files with textureInput.cpp
 	Texture = loadDDSTexture(ddsFilePath);
-	//mySampler2D uniform variable 
-	textureUniform = glGetUniformLocation(getCommonShaderProgram(), "mySampler2D");
-
+	
 	glGenVertexArrays(1, &vertexArrayObject);
 	glBindVertexArray(vertexArrayObject);
 
@@ -65,6 +92,12 @@ Sprite3d::~Sprite3d() {
 
 //draws the triangles in the vertex buffer with the UV's, uses shaders
 void Sprite3d::drawSpriteTriangles() {
+	glfwMakeContextCurrent(window);
+	glUseProgram(shader);
+
+	glm::mat4 MVP = getPMatrix() * getVMatrix() * modelMatrix;
+	glUniformMatrix4fv(mvpMatrixUniform, 1, GL_FALSE, &MVP[0][0]);	//link MVP matrix to uniform variable for shader
+
 	glBindVertexArray(vertexArrayObject);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, Texture);
