@@ -26,7 +26,6 @@ int windowH;
 void window_size_callback(GLFWwindow* window, int width, int height) {
 	windowH = height;
 	windowW = width;
-	//glfwSetCursorPos(window, windowW / 2, windowH / 2);
 }
 
 int initializeWindow() {

@@ -152,6 +152,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\objInput.cpp" />
     <ClCompile Include="src\shaders.cpp" />
+    <ClCompile Include="src\Shape2d.cpp" />
     <ClCompile Include="src\Sprite3d.cpp" />
     <ClCompile Include="src\textureInput.cpp" />
     <ClCompile Include="src\userControls.cpp" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="src\objInput.hpp" />
     <ClInclude Include="src\shaders.hpp" />
+    <ClInclude Include="src\Shape2d.hpp" />
     <ClInclude Include="src\Sprite3d.hpp" />
     <ClInclude Include="src\textureInput.hpp" />
     <ClInclude Include="src\userControls.hpp" />
